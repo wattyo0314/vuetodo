@@ -1,0 +1,15 @@
+tbody tr {
+  &.editing {
+    .edit {
+      display: block;
+    }
+
+    .view {
+      display: none;
+    }
+  }
+
+  .edit {
+    display: none;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
+    <title>TODOアプリ</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Vue.jsでTODOアプリ</h1>
+      <form v-on:submit.prevent="addTasks">
+        <label for="title">タイトル</label>
+        <br />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="タスクを入力してください。"
+          size="30"
+          maxlength="20"
+          v-model="addTitle"
+        />
+        <br />
+        <br />
+        <label for="deadline">期限</label>
+        <br />
+        <input type="date" id="deadline" name="deadline" v-model="deadline" />
+        <br />
+        <input type="submit" value="追加する" />
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>期限</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(todo, index) in todos" v-bind:key="todo.id">
+            <td>{{todo.id}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.deadline}}</td>
+            <td>
+              <label
+                ><input
+                  type="radio"
+                  value="未完了"
+                  v-model="status"
+                />未完了</label
+              >
+              <label
+                ><input type="radio" value="完了" v-model="status" />完了</label
+              >
+            </td>
+            <td @click="removeTask"><i class="fas fa-trash-alt"></i></td>
+            <td @click="editTask"><i class="fas fa-edit"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

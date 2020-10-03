@@ -1,0 +1,42 @@
+{
+  "name": "VueJS_TODO",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.10.0"
+  },
+  "rules": {
+    "camelcase": "off",
+    "comma-dangle": "off",
+    "comma-spacing": "off",
+    "eqeqeq": "off",
+    "handle-callback-err": "off",
+    "indent": "off",
+    "key-spacing": "off",
+    "keyword-spacing": "off",
+    "no-multi-spaces": "off",
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "object-curly-spacing": "off",
+    "quotes": "off",
+    "semi": "off",
+    "space-before-function-paren": "off",
+    "space-before-blocks": "off",
+    "space-in-parens": "off",
+    "spaced-comment": "off",
+    "space-infix-ops": "off",
+    "no-dupe-keys": "off",
+    "no-fallthrough": "off",
+    "no-spaced-func": "off",
+    "no-multiple-empty-lines": "off",
+    "no-trailing-spaces": "off",
+    "padded-blocks": "off"
+  }
+}
