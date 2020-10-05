@@ -13,6 +13,31 @@
   <body>
     <div id="app">
       <h1>Vue.jsでTODOアプリ</h1>
+      <label
+        ><input
+          type="radio"
+          name="list"
+          value="all"
+          v-model="filter"
+        />すべて</label
+      >
+      <label
+        ><input
+          type="radio"
+          name="list"
+          value="active"
+          v-model="filter"
+        />作業中</label
+      >
+      <label
+        ><input
+          type="radio"
+          name="list"
+          value="completed"
+          v-model="filter"
+        />完了</label
+      >
+      <p>ID コメント 状態</p>
       <form v-on:submit.prevent="addTasks">
         <label for="title">タイトル</label>
         <br />
@@ -39,28 +64,32 @@
             <th>ID</th>
             <th>タイトル</th>
             <th>期限</th>
-            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(todo, index) in todos" v-bind:key="todo.id">
+          <tr v-for="(todo, index) in filteredTodos" v-bind:key="todo.id">
             <td>{{todo.id}}</td>
             <td>{{todo.title}}</td>
             <td>{{todo.deadline}}</td>
             <td>
-              <label
-                ><input
-                  type="radio"
-                  value="未完了"
-                  v-model="status"
-                />未完了</label
-              >
-              <label
-                ><input type="radio" value="完了" v-model="status" />完了</label
-              >
+              <button @click="statusChange(todo.id)">
+                {{ todo.statusBtn }}
+              </button>
             </td>
             <td @click="removeTask"><i class="fas fa-trash-alt"></i></td>
-            <td @click="editTask"><i class="fas fa-edit"></i></td>
+            <td @click="editTask(index)"><i class="fas fa-edit"></i></td>
+          </tr>
+          <tr
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-if="todo.flag === false"
+            class="completeTasks"
+          >
+            <td><button @click="changeToDo(todo.id)">戻す</button></td>
+            <td>{{todo.id}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.deadline}}</td>
+            <td @click="removeTask"><i class="fas fa-trash-alt"></i></td>
           </tr>
         </tbody>
       </table>

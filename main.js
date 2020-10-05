@@ -1,11 +1,10 @@
+"use strict";
 var app = new Vue({
   el: "#app",
   data: {
-    todos: [],
+    filteredTodos: [],
     addTitle: "",
     deadline: null,
-    status: "未完了",
-    editIndex: false,
   },
   created: function () {
     this.deadline = this.formatDate(new Date());
@@ -44,21 +43,31 @@ var app = new Vue({
       );
     },
     editTask(id) {
-      let newText = window.prompt("以下内容で更新します。");
-      if (newText === "") {
+      let newTitle = window.prompt("以下内容で更新します。");
+      if (newTitle === "") {
         alert("入力欄が空欄です。");
+        return;
       }
-      this.edit(id, newText);
+      this.edit(id, newTitle);
     },
-    edit(id, title) {
-      let editIndex = "";
+    edit(index, title) {
+      this.todos[index].title = title;
+    },
+    changeToDo(id) {
+      let changeIndex = "";
       this.todos.some(function (value, index) {
         if (value.id === id) {
-          editIndex = index;
-          console.log(editIndex);
+          changeIndex = index;
         }
       });
-      this.todos[editIndex].title = title;
+      this.todos[changeIndex].flag = this.change(changeIndex);
+    },
+    change(changeIndex) {
+      if (this.todos[changeIndex].flag === true) {
+        return false;
+      } else {
+        return true;
+      }
     },
   },
 });
